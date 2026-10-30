@@ -30,15 +30,24 @@ body, html {
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -1;
+    z-index: 0;
     pointer-events: none;
+}
+
+body > *:not(#space-bg) {
+    position: relative;
+    z-index: 1;
 }
 
 /* Télémétrie HUD */
 #telemetry-hud {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
+    position: fixed !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: 20px !important;
+    left: 20px !important;
+    width: max-content;
+    max-width: calc(100vw - 40px);
     background: rgba(3, 10, 25, 0.85);
     border: 1px solid var(--arianespace-cyan);
     box-shadow: 0 0 15px rgba(0, 163, 224, 0.2);
