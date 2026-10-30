@@ -1,1 +1,128 @@
-<h1>Hello World !</h1>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Louis Chevailler | Portfolio Aérospatial</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">L.C.</div>
+            <ul class="nav-links">
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#skills">Compétences</a></li>
+                <li><a href="#projects">Projets</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Louis <span>Chevailler</span></h1>
+            <h2>Élève Ingénieur en Aérospatial[cite: 1]</h2>
+            <p>Passionné par les fusées, les boosters et la propulsion spatiale.</p>
+            <a href="#projects" class="btn">Découvrir mes projets</a>
+        </div>
+    </header>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">À propos de moi</h2>
+            <div class="about-text">
+                <p>Actuellement en 3ème année du cycle ingénieur à ELISA Aerospace (Bordeaux)[cite: 1]. Passionné par l'aérospatial et les véhicules spatiaux, je nourris un fort intérêt pour la propulsion et la thermodynamique[cite: 1].</p>
+                <p><strong>Objectif :</strong> Je suis à la recherche d'un stage d'ingénieur à l'international d'une durée de 16 semaines minimum, entre juillet 2027 et mi-janvier 2028[cite: 1].</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Compétences Techniques</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Programmation & Systèmes Embarqués</h3>
+                    <p>Python, C++, Arduino[cite: 1]</p>
+                </div>
+                <div class="skill-card">
+                    <h3>CAO & Simulation</h3>
+                    <p>CATIA, MATLAB, 3DEXPERIENCE[cite: 1]</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Langues</h3>
+                    <p>Français (Natif), Anglais (B2), Espagnol (Intermédiaire)[cite: 1]</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Projets Académiques</h2>
+            <div class="projects-grid">
+                <!-- Projet 1 -->
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Voiture Radiocommandée (Mécatronique)</h3>
+                        <p class="project-date">2025 - 2026[cite: 1]</p>
+                        <p>Conception d'une voiture RC à propulsion EDF (Electric Ducted Fan) combinant mécanique, électronique et programmation[cite: 27].</p>
+                        <ul>
+                            <li>Modélisation CAO du système de suspension et du support de turbine[cite: 1].</li>
+                            <li>Programmation de la carte Arduino pour la communication entre le contrôleur et les composants[cite: 1, 27].</li>
+                            <li>Étude et câblage du module de communication sans fil nRF24L01[cite: 1].</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Projet 2 -->
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Simulation de Trajectoire Spatiale</h3>
+                        <p class="project-date">2025 - 2026[cite: 1]</p>
+                        <p>Développement d'une application MATLAB pour modéliser la dynamique du satellite Sentinel-1A en orbite[cite: 1, 8].</p>
+                        <ul>
+                            <li>Intégration des lois de Kepler et visualisation de multiples orbites interactives[cite: 1, 10].</li>
+                            <li>Modélisation des perturbations gravitationnelles (effet J2 lié à la non-sphéricité de la Terre)[cite: 10, 19].</li>
+                            <li>Résolution d'équations différentielles via la fonction ode4[cite: 13].</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Projet 3 -->
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Jeu Vidéo en C++ (POO)</h3>
+                        <p class="project-date">ELISA 3 BDX[cite: 2]</p>
+                        <p>Développement itératif d'un jeu de combat en équipe, mettant en œuvre la Programmation Orientée Objet[cite: 2].</p>
+                        <ul>
+                            <li>Conception et implémentation de classes collaboratives en C++[cite: 2].</li>
+                            <li>Analyse des besoins, tests, et gestion de versions successives[cite: 2].</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer">
+        <div class="container">
+            <h2>Prêt pour le décollage ?</h2>
+            <p>N'hésitez pas à me contacter pour toute opportunité de stage.</p>
+            <div class="contact-info">
+                <p>Email: <a href="mailto:L.chevailler@elisa-aerospace.fr">L.chevailler@elisa-aerospace.fr</a>[cite: 1]</p>
+                <p>Téléphone: +33 6 09 23 97 72[cite: 1]</p>
+                <p>LinkedIn: <a href="#">Louis Chevailler</a>[cite: 1]</p>
+            </div>
+            <p class="copyright">© 2026 Louis Chevailler. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
