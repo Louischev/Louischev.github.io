@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Louis Chevailler | Portfolio Aérospatial</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="stars"></div>
-    <div class="twinkling"></div>
+    <!-- Canvas interactif en arrière-plan -->
+    <canvas id="space-bg"></canvas>
+
+    <!-- Affichage Télémétrie de Vol (Interactive HUD) -->
+    <div id="telemetry-hud">
+        <div class="hud-item"><span class="hud-label">ALTITUDE:</span> <span id="hud-alt">0</span> km</div>
+        <div class="hud-item"><span class="hud-label">VITESSE:</span> <span id="hud-speed">0</span> m/s</div>
+        <div class="hud-item"><span class="hud-label">PHASE:</span> <span id="hud-phase" class="hud-highlight">T-0s | DÉCOLLAGE</span></div>
+    </div>
 
     <nav class="navbar">
         <div class="nav-content">
@@ -27,7 +34,7 @@
         <div class="hero-content">
             <h1>Louis <span>Chevailler</span></h1>
             <h2>Élève Ingénieur en Aérospatial</h2>
-            <p>Passionné par les fusées, les boosters et la propulsion spatiale.</p>
+            <p>Spécialisé en propulsion spatiale, boosters et dynamique de vol.</p>
             <a href="#projects" class="btn">Découvrir mes projets</a>
         </div>
     </header>
@@ -35,9 +42,9 @@
     <section id="about" class="section">
         <div class="container">
             <h2 class="section-title">À propos de moi</h2>
-            <div class="about-text">
-                <p>Actuellement en 3ème année du cycle ingénieur à ELISA Aerospace (Bordeaux). Passionné par l'aérospatial et les véhicules spatiaux, je nourris un fort intérêt pour la propulsion et la thermodynamique.</p>
-                <p><strong>Objectif :</strong> Je suis à la recherche d'un stage d'ingénieur à l'international d'une durée de 16 semaines minimum, entre juillet 2027 et mi-janvier 2028.</p>
+            <div class="about-card">
+                <p>Actuellement en 3ème année du cycle ingénieur à ELISA Aerospace (Bordeaux). Passionné par l'aérospatial et les véhicules spatiaux, je nourris un fort intérêt pour la propulsion et la thermodynamique[cite: 1].</p>
+                <p><strong>Objectif :</strong> Recherche d'un stage d'ingénieur à l'international d'une durée de 16 semaines minimum, entre juillet 2027 et mi-janvier 2028 dans ces domaines[cite: 1].</p>
             </div>
         </div>
     </section>
@@ -47,16 +54,16 @@
             <h2 class="section-title">Compétences Techniques</h2>
             <div class="skills-grid">
                 <div class="skill-card">
-                    <h3>Programmation & Systèmes Embarqués</h3>
-                    <p>Python, C++, Arduino</p>
+                    <h3>Programmation & Embarqué</h3>
+                    <p>Python, C++, Arduino[cite: 1]</p>
                 </div>
                 <div class="skill-card">
                     <h3>CAO & Simulation</h3>
-                    <p>CATIA, MATLAB, 3DEXPERIENCE</p>
+                    <p>CATIA, MATLAB, 3DEXPERIENCE[cite: 1]</p>
                 </div>
                 <div class="skill-card">
                     <h3>Langues</h3>
-                    <p>Français (Natif), Anglais (B2), Espagnol (Intermédiaire)</p>
+                    <p>Français (Natif), Anglais (B2), Espagnol (Intermédiaire)[cite: 1]</p>
                 </div>
             </div>
         </div>
@@ -66,43 +73,40 @@
         <div class="container">
             <h2 class="section-title">Projets Académiques</h2>
             <div class="projects-grid">
-                <!-- Projet 1 -->
                 <div class="project-card">
                     <div class="project-content">
-                        <h3>Voiture Radiocommandée (Mécatronique)</h3>
-                        <p class="project-date">2025 - 2026</p>
-                        <p>Conception d'une voiture RC à propulsion EDF (Electric Ducted Fan) combinant mécanique, électronique et programmation.</p>
+                        <h3>Voiture RC à Propulsion EDF</h3>
+                        <p class="project-date">2025 - 2026[cite: 1]</p>
+                        <p>Conception d'une voiture RC à propulsion EDF (Electric Ducted Fan) combinant mécanique, électronique et programmation[cite: 27].</p>
                         <ul>
-                            <li>Modélisation CAO du système de suspension et du support de turbine.</li>
-                            <li>Programmation de la carte Arduino pour la communication entre le contrôleur et les composants.</li>
-                            <li>Étude et câblage du module de communication sans fil nRF24L01.</li>
+                            <li>Modélisation CAO du système de suspension et du support de turbine[cite: 1].</li>
+                            <li>Programmation Arduino pour la communication contrôleur-composants[cite: 1, 27].</li>
+                            <li>Étude et intégration du module radio sans fil nRF24L01[cite: 1].</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Projet 2 -->
                 <div class="project-card">
                     <div class="project-content">
                         <h3>Simulation de Trajectoire Spatiale</h3>
-                        <p class="project-date">2025 - 2026</p>
-                        <p>Développement d'une application MATLAB pour modéliser la dynamique du satellite Sentinel-1A en orbite.</p>
+                        <p class="project-date">2025 - 2026[cite: 1]</p>
+                        <p>Développement d'une application MATLAB pour modéliser la dynamique du satellite Sentinel-1A en orbite terrestre[cite: 1, 8].</p>
                         <ul>
-                            <li>Intégration des lois de Kepler et visualisation de multiples orbites interactives.</li>
-                            <li>Modélisation des perturbations gravitationnelles (effet J2 lié à la non-sphéricité de la Terre).</li>
-                            <li>Résolution d'équations différentielles via la fonction ode4.</li>
+                            <li>Intégration des trois lois de Kepler et modélisation multi-orbites[cite: 1, 10].</li>
+                            <li>Prise en compte du potentiel J2 (non-sphéricité de la Terre)[cite: 10, 19].</li>
+                            <li>Résolution numérique par intégrateur ode4[cite: 13].</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Projet 3 -->
                 <div class="project-card">
                     <div class="project-content">
-                        <h3>Jeu Vidéo en C++ (POO)</h3>
-                        <p class="project-date">ELISA 3 BDX</p>
-                        <p>Développement itératif d'un jeu de combat en équipe, mettant en œuvre la Programmation Orientée Objet.</p>
+                        <h3>Jeu de Combat C++ (POO)</h3>
+                        <p class="project-date">ELISA 3 BDX[cite: 2]</p>
+                        <p>Développement itératif d'un logiciel de jeu de combat en équipe appliquant les principes clés de la POO[cite: 2].</p>
                         <ul>
-                            <li>Conception et implémentation de classes collaboratives en C++.</li>
-                            <li>Analyse des besoins, tests, et gestion de versions successives.</li>
+                            <li>Conception UML et implémentation de classes collaboratives[cite: 2].</li>
+                            <li>Tests unitaires, gestion de versions Git et suivi itératif[cite: 2, 5].</li>
                         </ul>
                     </div>
                 </div>
@@ -112,12 +116,12 @@
 
     <footer id="contact" class="footer">
         <div class="container">
-            <h2>Prêt pour le décollage ?</h2>
-            <p>N'hésitez pas à me contacter pour toute opportunité de stage.</p>
+            <h2>Mise en orbite réussie</h2>
+            <p>Disponible pour échanger sur mes projets ou de futures opportunités.</p>
             <div class="contact-info">
-                <p>Email: <a href="mailto:L.chevailler@elisa-aerospace.fr">l.chevailler@elisa-aerospace.fr</a></p>
-                <p>Téléphone: +33 6 09 23 97 72</p>
-                <p>LinkedIn: <a href="#">Louis Chevailler</a></p>
+                <p>Email : <a href="mailto:L.chevailler@elisa-aerospace.fr">L.chevailler@elisa-aerospace.fr</a>[cite: 1]</p>
+                <p>Téléphone : +33 6 09 23 97 72[cite: 1]</p>
+                <p>LinkedIn : <a href="#">Louis Chevailler</a>[cite: 1]</p>
             </div>
             <p class="copyright">© 2026 Louis Chevailler. Tous droits réservés.</p>
         </div>
