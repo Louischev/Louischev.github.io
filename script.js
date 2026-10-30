@@ -1,5 +1,7 @@
 const canvas = document.getElementById('space-bg');
 const ctx = canvas.getContext('2d');
+const ariane6 = new Image();
+ariane6.src = 'ariane6.svg';
 
 let width, height;
 function resize() {
@@ -20,7 +22,6 @@ const stars = Array.from({ length: 150 }, () => ({
 // Télémétrie UI
 const hudAlt = document.getElementById('hud-alt');
 const hudSpeed = document.getElementById('hud-speed');
-const hudPhase = document.getElementById('hud-phase');
 
 function getScrollProgress() {
     const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -48,6 +49,23 @@ function drawBackground(progress) {
     }
     
     ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, width, height);
+
+    // Halos bleus subtils pour donner de la profondeur au fond.
+    const glow = ctx.createRadialGradient(
+        width * 0.5, height * 0.35, 0,
+        width * 0.5, height * 0.35, width * 0.7
+    );
+    glow.addColorStop(0, `rgba(0, 102, 255, ${0.12 - progress * 0.04})`);
+    glow.addColorStop(0.45, `rgba(0, 163, 224, ${0.05 - progress * 0.02})`);
+    glow.addColorStop(1, 'rgba(0, 0, 0, 0)');
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, width, height);
+
+    const horizon = ctx.createLinearGradient(0, height * 0.55, 0, height);
+    horizon.addColorStop(0, 'rgba(0, 102, 255, 0)');
+    horizon.addColorStop(1, 'rgba(0, 102, 255, 0.08)');
+    ctx.fillStyle = horizon;
     ctx.fillRect(0, 0, width, height);
 
     // Dessin des étoiles (plus visibles à mesure qu'on monte)
@@ -89,37 +107,39 @@ function drawTrajectoryAndRocket(progress) {
 
     ctx.save();
     ctx.translate(rx, ry);
-    ctx.rotate(angle);
+    ctx.rotate(angle + Math.PI / 2);
 
-    // Flamme du booster (animée)
-    if (progress < 0.95) {
-        ctx.beginPath();
-        ctx.moveTo(-15, 0);
-        ctx.lineTo(-30 - Math.random() * 12, -4);
-        ctx.lineTo(-25, 0);
-        ctx.lineTo(-30 - Math.random() * 12, 4);
-        ctx.closePath();
-        ctx.fillStyle = progress < 0.3 ? '#ff6600' : '#00a3e0'; // Flamme chaude au décollage, puis bleue hyperergolique/hydrogène
-        ctx.shadowBlur = 15;
-        ctx.shadowColor = ctx.fillStyle;
-        ctx.fill();
+    if (ariane6.complete && ariane6.naturalWidth > 0) {
+        const rocketHeight = Math.min(220, Math.max(150, height * 0.25));
+        const rocketWidth = rocketHeight * (ariane6.naturalWidth / ariane6.naturalHeight);
+
+        if (progress < 0.95) {
+            const flameLength = 20 + Math.random() * 12;
+            const flame = ctx.createLinearGradient(0, 0, 0, flameLength);
+            flame.addColorStop(0, '#fff3a3');
+            flame.addColorStop(0.35, '#ffb21c');
+            flame.addColorStop(0.72, '#ff5a16');
+            flame.addColorStop(1, 'rgba(255, 54, 0, 0)');
+
+            ctx.save();
+            ctx.globalCompositeOperation = 'lighter';
+            ctx.shadowColor = '#ff6a1a';
+            ctx.shadowBlur = 18;
+            ctx.fillStyle = flame;
+            ctx.beginPath();
+            ctx.moveTo(-rocketWidth * 0.16, -2);
+            ctx.quadraticCurveTo(-rocketWidth * 0.08, flameLength * 0.4, 0, flameLength);
+            ctx.quadraticCurveTo(rocketWidth * 0.08, flameLength * 0.4, rocketWidth * 0.16, -2);
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+        }
+
+        ctx.shadowColor = 'rgba(0, 163, 224, 0.55)';
+        ctx.shadowBlur = 12;
+        ctx.drawImage(ariane6, -rocketWidth / 2, -rocketHeight, rocketWidth, rocketHeight);
         ctx.shadowBlur = 0;
     }
-
-    // Dessin vectoriel de la fusée (Ariane Style)
-    ctx.fillStyle = '#f0f4f8';
-    ctx.beginPath();
-    ctx.moveTo(18, 0); // Nez
-    ctx.lineTo(-12, -5);
-    ctx.lineTo(-15, -5);
-    ctx.lineTo(-15, 5);
-    ctx.lineTo(-12, 5);
-    ctx.closePath();
-    ctx.fill();
-
-    // Bandeau bleu Arianespace sur le corps
-    ctx.fillStyle = '#0066FF';
-    ctx.fillRect(-2, -4.5, 6, 9);
 
     ctx.restore();
 }
@@ -130,15 +150,6 @@ function updateHUD(progress) {
     hudAlt.textContent = alt;
     hudSpeed.textContent = speed;
 
-    if (progress < 0.20) {
-        hudPhase.textContent = "T-0s | DÉCOLLAGE & POUSSÉE MAX";
-    } else if (progress < 0.50) {
-        hudPhase.textContent = "SÉPARATION BOOSTERS (EAP)";
-    } else if (progress < 0.80) {
-        hudPhase.textContent = "ÉSTAGE PRINCIPAL & LARGAGE COIFFE";
-    } else {
-        hudPhase.textContent = "INJECTION ORBITALE (RÉUSSITE)";
-    }
 }
 
 // Boucle de rendu
